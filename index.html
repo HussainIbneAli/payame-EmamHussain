@@ -12,24 +12,23 @@
       text-align: center;
       direction: rtl;
       color: black;
-      background-image: url('H.jpg.jpg');
-      background-size: cover; /* تصویر را کاملاً پوشش می‌دهد */
-      background-repeat: no-repeat; /* از تکرار جلوگیری می‌کند */
-      background-position: center; /* تصویر را در مرکز قرار می‌دهد */
-      background-attachment: fixed; /* تصویر ثابت باقی می‌ماند */
-      height: 100vh; /* ارتفاع کل صفحه */
+      height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      overflow: hidden; /* جلوگیری از اسکرول */
     }
 
-    /* برای صفحات کوچک‌تر */
-    @media (max-width: 768px) {
-      body {
-        background-size: cover; /* تصویر همچنان در حالت پوشش کامل باقی می‌ماند */
-        background-repeat: no-repeat; /* اطمینان از عدم تکرار تصویر */
-      }
+    /* ویدیو به‌عنوان پس‌زمینه */
+    video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* ویدیو کاملاً صفحه را پوشش می‌دهد */
+      z-index: -1; /* زیر محتوا نمایش داده می‌شود */
     }
 
     h1 {
@@ -77,6 +76,12 @@
   </style>
 </head>
 <body>
+  <!-- ویدیو به‌عنوان پس‌زمینه -->
+  <video autoplay muted loop>
+    <source src="your-video.mp4.mp4" type="video/mp4">
+    مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+  </video>
+
   <h1>جمله تصادفی</h1>
   <button onclick="showRandomSentence()">کلیک کنید</button>
   <div id="paper">
