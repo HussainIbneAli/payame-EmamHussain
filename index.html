@@ -20,8 +20,9 @@
       overflow: hidden; /* جلوگیری از اسکرول */
     }
 
-    /* ویدیو به‌عنوان پس‌زمینه */
-    video {
+    /* ویدیو پس‌زمینه برای دسکتاپ */
+    #desktop-video {
+      display: block;
       position: fixed;
       top: 0;
       left: 0;
@@ -29,6 +30,28 @@
       height: 100%;
       object-fit: cover; /* ویدیو کاملاً صفحه را پوشش می‌دهد */
       z-index: -1; /* زیر محتوا نمایش داده می‌شود */
+    }
+
+    /* ویدیو پس‌زمینه برای موبایل */
+    #mobile-video {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* ویدیو کاملاً صفحه را پوشش می‌دهد */
+      z-index: -1; /* زیر محتوا نمایش داده می‌شود */
+    }
+
+    /* نمایش ویدیو موبایل در صفحات کوچک‌تر */
+    @media (max-width: 768px) {
+      #desktop-video {
+        display: none;
+      }
+      #mobile-video {
+        display: block;
+      }
     }
 
     h1 {
@@ -76,14 +99,20 @@
   </style>
 </head>
 <body>
-  <!-- ویدیو به‌عنوان پس‌زمینه -->
-  <video autoplay muted loop>
-    <source src="your-video.mp4.mp4" type="video/mp4">
+  <!-- ویدیو برای دسکتاپ -->
+  <video id="desktop-video" autoplay loop muted playsinline>
+    <source src="desktop-video.mp4" type="video/mp4">
+    مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+  </video>
+
+  <!-- ویدیو برای موبایل -->
+  <video id="mobile-video" autoplay loop muted playsinline>
+    <source src="mobile-video.mp4" type="video/mp4">
     مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
   </video>
 
   <h1>جمله تصادفی</h1>
-  <button onclick="showRandomSentence()">کلیک کنید</button>
+  <button onclick="handleButtonClick()">کلیک کنید</button>
   <div id="paper">
     <p id="sentence"></p>
   </div>
@@ -96,6 +125,20 @@
       "عشق بزرگ‌ترین هدیه‌ای است که می‌توان دریافت کرد.",
       "دوستی مانند گلی است که باید از آن مراقبت کرد."
     ];
+
+    function handleButtonClick() {
+      // انتخاب ویدیو مناسب
+      const activeVideo = window.innerWidth <= 768
+        ? document.getElementById('mobile-video')
+        : document.getElementById('desktop-video');
+
+      // فعال کردن صدا و پخش ویدیو
+      activeVideo.muted = false;
+      activeVideo.play();
+
+      // نمایش جمله تصادفی
+      showRandomSentence();
+    }
 
     function showRandomSentence() {
       const randomIndex = Math.floor(Math.random() * sentences.length);
