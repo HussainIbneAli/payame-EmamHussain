@@ -13,15 +13,23 @@
       direction: rtl;
       color: black;
       background-image: url('H.jpg.jpg');
-      background-size: cover; /* تصویر را کامل پوشش می‌دهد */
-      background-repeat: no-repeat; /* جلوگیری از تکرار تصویر */
+      background-size: cover; /* تصویر را کاملاً پوشش می‌دهد */
+      background-repeat: no-repeat; /* از تکرار جلوگیری می‌کند */
       background-position: center; /* تصویر را در مرکز قرار می‌دهد */
       background-attachment: fixed; /* تصویر ثابت باقی می‌ماند */
-      height: 100vh;
+      height: 100vh; /* ارتفاع کل صفحه */
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+    }
+
+    /* برای صفحات کوچک‌تر */
+    @media (max-width: 768px) {
+      body {
+        background-size: cover; /* تصویر همچنان در حالت پوشش کامل باقی می‌ماند */
+        background-repeat: no-repeat; /* اطمینان از عدم تکرار تصویر */
+      }
     }
 
     h1 {
