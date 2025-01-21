@@ -16,17 +16,41 @@
       height: 100vh;
       background-size: cover;
       background-position: center;
-      background-attachment: fixed; /* برای پس‌زمینه ثابت */
+      background-attachment: fixed;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     @media (max-width: 768px) {
       body {
-        background-size: contain; /* برای موبایل تصویر را در ابعاد مناسب نمایش می‌دهد */
+        background-size: contain;
+        padding: 10px;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+
+      button {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+
+      #paper {
+        width: 90%;
+        height: auto;
+      }
+
+      #paper p {
+        font-size: 14px;
+        padding: 10px;
       }
     }
 
     h1 {
-      margin-top: 50px;
+      margin-bottom: 20px;
       color: white;
       text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
     }
@@ -50,13 +74,15 @@
 
     #paper {
       width: 300px;
-      height: 200px;
-      margin: 20px auto 0;
+      max-width: 90%;
+      height: auto;
+      padding: 10px;
+      margin-top: 20px;
       background: #f8f1e4;
       border: 2px solid #ccc;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      display: none; /* در ابتدا کاغذ مخفی است */
+      display: none;
       position: relative;
       animation: slideIn 1s ease-out forwards;
     }
@@ -68,7 +94,6 @@
       color: #333;
     }
 
-    /* انیمیشن برای ظاهر شدن کاغذ */
     @keyframes slideIn {
       from {
         transform: translateY(-100%);
@@ -95,19 +120,13 @@
       "با امید و تلاش می‌توان کوه‌ها را جا‌به‌جا کرد.",
       "عشق بزرگ‌ترین هدیه‌ای است که می‌توان دریافت کرد.",
       "دوستی مانند گلی است که باید از آن مراقبت کرد."
-      // جملات بیشتری اضافه کنید
     ];
 
     function showRandomSentence() {
       const randomIndex = Math.floor(Math.random() * sentences.length);
       const randomSentence = sentences[randomIndex];
-
-      // قرار دادن جمله در کاغذ
       document.getElementById('sentence').textContent = randomSentence;
-
-      // نمایش کاغذ با انیمیشن
-      const paper = document.getElementById('paper');
-      paper.style.display = 'block';
+      document.getElementById('paper').style.display = 'block';
     }
   </script>
 </body>
